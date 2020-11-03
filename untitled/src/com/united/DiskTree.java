@@ -10,7 +10,7 @@ public class DiskTree {
         GetDiskTree(scanner.next(), 0);
     }
 
-    public static void GetDiskTree(String path, int depth) {
+    public static void GetDiskTree(String path, int countIndent) {
         File file = null;
         try{
             file = new File(path);
@@ -20,13 +20,13 @@ public class DiskTree {
         }
         File[] catalog = file.listFiles();
         StringBuilder indent = new StringBuilder();
-        while (indent.length() != depth) {
+        while (indent.length() != countIndent) {
             indent.append(" ");;
         }
         for (File e:catalog) {
             System.out.println(indent.toString() + e.getName());
             if(e.isDirectory()){
-                GetDiskTree(e.getAbsolutePath(), ++depth);
+                GetDiskTree(e.getAbsolutePath(), ++countIndent);
             }
         }
     }
